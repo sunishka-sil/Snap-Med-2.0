@@ -1,0 +1,244 @@
+{
+  "procedure": "Cardiac Arrest Management",
+  "steps": [
+    {
+      "step": 1,
+      "action": "Initial Safety & Assessment",
+      "tool": {
+        "checklist": {
+          "items": [
+            "Check for responsiveness",
+            "Call for nearby help & AED"
+          ]
+        }
+      },
+      "next": [
+        {
+          "condition": "Unresponsive",
+          "next": 2
+        }
+      ]
+    },
+    {
+      "step": 2,
+      "action": "Pulse Check",
+      "tool": {
+        "checklist": {
+          "items": [
+            "Assess patient for pulse (< 10 seconds)",
+            "Look for normal breathing"
+          ]
+        },
+        "reminder": {
+          "items": [
+            "Agonal gasps are NOT normal breathing."
+          ]
+        }
+      },
+      "next": [
+        {
+          "condition": "No Pulse / Abn. Breathing",
+          "next": 3
+        },
+        {
+          "condition": "Pulse Present",
+          "next": "DONE"
+        }
+      ]
+    },
+    {
+      "step": 3,
+      "action": "Begin CPR",
+      "tool": {
+        "checklist": {
+          "items": [
+            "Start Compressions (30:2 ratio)",
+            "Push hard (2-2.4 in) and fast (100-120/min)",
+            "Allow chest recoil"
+          ]
+        }
+      },
+      "next": [
+        {
+          "condition": "AED Arrives",
+          "next": 4
+        }
+      ]
+    },
+    {
+      "step": 4,
+      "action": "AED Setup",
+      "tool": {
+        "checklist": {
+          "items": [
+            "Turn on AED",
+            "Apply pads (continue compressions if possible)",
+            "Plug in connector"
+          ]
+        }
+      },
+      "next": [
+        {
+          "condition": "Ready to Analyze",
+          "next": 5
+        }
+      ]
+    },
+    {
+      "step": 5,
+      "action": "Rhythm Analysis",
+      "tool": {
+        "checklist": {
+          "items": [
+            "Stop compressions",
+            "Clear patient",
+            "Analyze rhythm"
+          ]
+        }
+      },
+      "next": [
+        {
+          "condition": "Shockable (VF/pVT)",
+          "next": 6
+        },
+        {
+          "condition": "Non-Shockable (As/PEA)",
+          "next": 7
+        }
+      ]
+    },
+    {
+      "step": 6,
+      "action": "Deliver Shock",
+      "tool": {
+        "checklist": {
+          "items": [
+            "Clear patient",
+            "Press Shock button",
+            "Resume CPR immediately (Do not check pulse)"
+          ]
+        }
+      },
+      "next": [
+        {
+          "condition": "Resume CPR",
+          "next": 7
+        }
+      ]
+    },
+    {
+      "step": 7,
+      "action": "CPR (2 Minutes)",
+      "tool": {
+        "checklist": {
+          "items": [
+            "High-quality compressions",
+            "Consider advanced airway",
+            "Establish IV/IO access",
+            "Consider Epinephrine q3-5min"
+          ]
+        },
+        "timer": [
+          {
+            "label": "CPR Cycle",
+            "duration": 120,
+            "onComplete": "Stop for Rhythm Check",
+            "persist": true
+          }
+        ]
+      },
+      "next": [
+        {
+          "condition": "Cycle Complete",
+          "next": 8
+        }
+      ]
+    },
+    {
+      "step": 8,
+      "action": "Rhythm Check",
+      "tool": {
+        "checklist": {
+          "items": [
+            "Stop compressions",
+            "Check rhythm",
+            "Switch Compressor"
+          ]
+        }
+      },
+      "next": [
+        {
+          "condition": "Shockable",
+          "next": 9
+        },
+        {
+          "condition": "Non-Shockable",
+          "next": 10
+        },
+        {
+          "condition": "ROSC",
+          "next": 11
+        }
+      ]
+    },
+    {
+      "step": 9,
+      "action": "Shock Delivery",
+      "tool": {
+        "checklist": {
+          "items": [
+            "Clear patient",
+            "Deliver Shock",
+            "Resume CPR immediately"
+          ]
+        }
+      },
+      "next": [
+        {
+          "condition": "Resume CPR",
+          "next": 10
+        }
+      ]
+    },
+    {
+      "step": 10,
+      "action": "Resume CPR / Meds",
+      "tool": {
+        "checklist": {
+          "items": [
+            "Resume Compressions",
+            "Administer Antiarrhythmic if refractory VF/pVT",
+            "Treat Reversible Causes (H's & T's)"
+          ]
+        }
+      },
+      "next": [
+        {
+          "condition": "Next Cycle",
+          "next": 7
+        }
+      ]
+    },
+    {
+      "step": 11,
+      "action": "Post-Cardiac Arrest Care",
+      "tool": {
+        "checklist": {
+          "items": [
+            "Monitor Vitals",
+            "Treat Hypotension (Fluids/Pressors)",
+            "Target SpO2 92-98%",
+            "Consider TTM (Targeted Temp Management)",
+            "12-Lead ECG"
+          ]
+        }
+      },
+      "next": [
+        {
+          "condition": "Complete",
+          "next": "DONE"
+        }
+      ]
+    }
+  ]
+}

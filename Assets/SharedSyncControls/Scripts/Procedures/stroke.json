@@ -1,0 +1,163 @@
+{
+  "procedure": "Stroke Assessment",
+  "steps": [
+    {
+      "step": 1,
+      "action": "Introduction",
+      "tool": {
+        "checklist": {
+          "items": [
+            "Introduce yourself and your role",
+            "Explain assessment to patient (e.g., 'I will be checking for signs of stroke')"
+          ]
+        },
+        "reminder": {
+          "items": [
+            "Maintain eye contact and speak calmly."
+          ]
+        }
+      },
+      "next": [
+        {
+          "condition": "",
+          "next": 2
+        }
+      ]
+    },
+    {
+      "step": 2,
+      "action": "Assess Facial Drooping (F)",
+      "tool": {
+        "checklist": {
+          "items": [
+            "Ask patient to smile or show teeth",
+            "Observe for facial asymmetry or drooping on one side"
+          ]
+        },
+        "reminder": {
+          "items": [
+            "Look for uneven smile or eyelids."
+          ]
+        }
+      },
+      "next": [
+        {
+          "condition": "",
+          "next": 3
+        }
+      ]
+    },
+    {
+      "step": 3,
+      "action": "Assess Arm Weakness (A)",
+      "tool": {
+        "checklist": {
+          "items": [
+            "Ask patient to raise both arms",
+            "Ensure palms are facing up",
+            "Hold for 10 seconds"
+          ]
+        },
+        "timer": [
+          {
+            "label": "Arm Drift Assessment",
+            "duration": 10,
+            "onComplete": "Check for drift",
+            "persist": false
+          }
+        ],
+        "reminder": {
+          "items": [
+            "Watch for one arm drifting down or rotating."
+          ]
+        }
+      },
+      "next": [
+        {
+          "condition": "",
+          "next": 4
+        }
+      ]
+    },
+    {
+      "step": 4,
+      "action": "Assess Speech Difficulty (S)",
+      "tool": {
+        "checklist": {
+          "items": [
+            "Ask patient to repeat a simple phrase (e.g., 'The sky is blue')",
+            "Listen for slurred speech or inability to speak"
+          ]
+        }
+      },
+      "next": [
+        {
+          "condition": "",
+          "next": 5
+        }
+      ]
+    },
+    {
+      "step": 5,
+      "action": "Timeline Assessment (T)",
+      "tool": {
+        "checklist": {
+          "items": [
+            "Ask: 'What time did the symptoms start?'",
+            "Ask: 'When was the last time you were known to be well?'"
+          ]
+        },
+        "reminder": {
+          "items": [
+            "Record exact times if possible."
+          ]
+        }
+      },
+      "next": [
+        {
+          "condition": "",
+          "next": 6
+        }
+      ]
+    },
+    {
+      "step": 6,
+      "action": "Additional Findings",
+      "tool": {
+        "checklist": {
+          "items": [
+            "Check blood glucose or verbalize need to check",
+            "Determine if BE-FAST findings are positive",
+            "Verbalize findings aloud to team/recording"
+          ]
+        }
+      },
+      "next": [
+        {
+          "condition": "",
+          "next": 7
+        }
+      ]
+    },
+    {
+      "step": 7,
+      "action": "Medication History",
+      "tool": {
+        "checklist": {
+          "items": [
+            "Ask if patient is on anticoagulant medications (blood thinners)"
+          ]
+        }
+      },
+      "next": [
+        {
+          "condition": "",
+          "next": "DONE"
+        }
+      ]
+    }
+  ],
+  "filename": "stroke.json",
+  "timestamp": "2026-02-13T10:00:00.000Z",
+  "is_active": true
+}

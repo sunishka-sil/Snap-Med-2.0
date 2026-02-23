@@ -1,0 +1,112 @@
+- !<AssetImportMetadata/d88cb1d6-3b46-4b63-81fa-e3b4163adc4c>
+  ImportedAssetIds:
+    TypeScriptAsset: !<reference> b9672a27-531e-449b-87e5-55b36b5675d0
+  ImporterName: TypeScriptAssetImporter
+  PrimaryAsset: !<reference> b9672a27-531e-449b-87e5-55b36b5675d0
+  PackageType: NotAPackage
+  LegacyPackagePolicy: ~
+  ExtraData:
+    {}
+  AssetDataMap:
+    TypeScriptAsset: !<own> 663d3452-1e78-4b1e-b350-99d5d8c6f151
+  DependentFiles:
+    []
+  ImporterSettings: !<AssetImporterSettings>
+    {}
+  CompressionSettings: !<own> 00000000-0000-0000-0000-000000000000
+- !<TypeScriptAssetData/663d3452-1e78-4b1e-b350-99d5d8c6f151>
+  SvgIcon: ""
+  SetupScript:
+    code: ""
+  Description: ""
+  VersionMajor: 0
+  VersionMinor: 0
+  VersionPatch: 0
+  ComponentUid: 8a00887b-0e6f-4e98-9747-26d6753d4f57
+  ExportUid: 00000000-0000-0000-0000-000000000000
+  PackagePolicy: CanBeUnpacked
+  ScriptInputsHidden:
+    backButton: false
+    backButtonRoot: false
+    checklistContainer: false
+    checklistItemButtons: false
+    checklistItemTexts: false
+    conditionButtonLabels: false
+    conditionButtonRoots: false
+    conditionButtons: false
+    doneButton: false
+    doneButtonRoot: false
+    hideButton: false
+    minimizedRoot: false
+    nextButton: false
+    nextButtonRoot: false
+    reminderRoot: false
+    reminderText: false
+    restoreButton: false
+    root: false
+    stepTitleText: false
+    timerLabelText: false
+    timerRoot: false
+    timerText: false
+  ScriptTypesHidden:
+    {}
+  ReadMe: !<reference> 00000000-0000-0000-0000-000000000000
+  DeclarationFile: !<reference> 00000000-0000-0000-0000-000000000000
+  Tags:
+    []
+  Attachments:
+    []
+  DefaultScriptInputs:
+    - root: !<reference.SceneObject> 00000000-0000-0000-0000-000000000000
+      stepTitleText: !<reference.Text> 00000000-0000-0000-0000-000000000000
+      checklistContainer: !<reference.SceneObject> 00000000-0000-0000-0000-000000000000
+      checklistItemTexts: !<reference.Text[]>
+        []
+      checklistItemButtons: !<MappingBased.AssignableType[]>
+        []
+      reminderText: !<reference.Text> 00000000-0000-0000-0000-000000000000
+      reminderRoot: !<reference.SceneObject> 00000000-0000-0000-0000-000000000000
+      timerText: !<reference.Text> 00000000-0000-0000-0000-000000000000
+      timerLabelText: !<reference.Text> 00000000-0000-0000-0000-000000000000
+      timerRoot: !<reference.SceneObject> 00000000-0000-0000-0000-000000000000
+      nextButton: !<MappingBased.AssignableType_1> 00000000-0000-0000-0000-000000000000
+      nextButtonRoot: !<reference.SceneObject> 00000000-0000-0000-0000-000000000000
+      backButton: !<MappingBased.AssignableType_2> 00000000-0000-0000-0000-000000000000
+      backButtonRoot: !<reference.SceneObject> 00000000-0000-0000-0000-000000000000
+      doneButton: !<MappingBased.AssignableType_3> 00000000-0000-0000-0000-000000000000
+      doneButtonRoot: !<reference.SceneObject> 00000000-0000-0000-0000-000000000000
+      hideButton: !<MappingBased.AssignableType_4> 00000000-0000-0000-0000-000000000000
+      minimizedRoot: !<reference.SceneObject> 00000000-0000-0000-0000-000000000000
+      restoreButton: !<MappingBased.AssignableType_5> 00000000-0000-0000-0000-000000000000
+      conditionButtons: !<MappingBased.AssignableType_6[]>
+        []
+      conditionButtonRoots: !<reference.SceneObject[]>
+        []
+      conditionButtonLabels: !<reference.Text[]>
+        []
+  ScriptTypes:
+    -
+      {}
+  InputLines:
+    - // @input SceneObject root
+    - // @input Component.Text stepTitleText
+    - // @input SceneObject checklistContainer
+    - "// @input Component.Text[] checklistItemTexts"
+    - "// @input AssignableType[] checklistItemButtons"
+    - // @input Component.Text reminderText
+    - // @input SceneObject reminderRoot
+    - // @input Component.Text timerText
+    - // @input Component.Text timerLabelText
+    - // @input SceneObject timerRoot
+    - // @input AssignableType_1 nextButton
+    - // @input SceneObject nextButtonRoot
+    - // @input AssignableType_2 backButton
+    - // @input SceneObject backButtonRoot
+    - // @input AssignableType_3 doneButton
+    - // @input SceneObject doneButtonRoot
+    - // @input AssignableType_4 hideButton
+    - // @input SceneObject minimizedRoot
+    - // @input AssignableType_5 restoreButton
+    - "// @input AssignableType_6[] conditionButtons"
+    - "// @input SceneObject[] conditionButtonRoots"
+    - "// @input Component.Text[] conditionButtonLabels"
