@@ -4,7 +4,7 @@ import {ProcedureNavigator} from "../SharedControls/ProcedureNavigator/Procedure
 import {ProcedureNavigatorInput} from "../SharedControls/ProcedureNavigator/ProcedureNavigatorInput"
 import {strokeProcedure} from "../Procedures/stroke"
 import {cardiacArrestProcedure} from "../Procedures/cardiacArrest"
-//import {intubationProcedure} from "../Procedures/intubation"
+import {intubationProcedure} from "../Procedures/intubation"
 //import {appleCuttingProcedure} from "../Procedures/appleCutting"
 
 // Enum for selecting a procedure from the Lens Studio inspector.
@@ -84,6 +84,10 @@ export class EntryPointMain extends BaseScriptComponent {
       case ProcedureIndex.CARDIAC_ARREST:
         print(`[EntryPointMain] Loading: Cardiac Arrest`)
         return cardiacArrestProcedure
+
+      case ProcedureIndex.INTUBATION:
+        print(`[EntryPointMain] Loading: Intubation`)
+        return intubationProcedure
 
 
       default:

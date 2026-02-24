@@ -1,6 +1,280 @@
-@component
-export class NewScript extends BaseScriptComponent {
-    onAwake() {
-
+export const intubationProcedure = {
+  "procedure": "Intubation Procedure",
+  "steps": [
+    {
+      "step": 1,
+      "action": "Initial Safety & Equipment",
+      "tool": {
+        "checklist": {
+          "items": [
+            "Don appropriate PPE",
+            "Call for help / Specialized airway team",
+            "Gather difficult airway cart",
+            "Check oxygen source and suction"
+          ]
+        },
+        "reminder": {
+          "items": [
+            "Ensure all equipment is functioning before starting."
+          ]
+        }
+      },
+      "next": [
+        {
+          "condition": "Next",
+          "next": 2
+        }
+      ]
+    },
+    {
+      "step": 2,
+      "action": "Airway Assessment",
+      "tool": {
+        "checklist": {
+          "items": [
+            "Open airway manually",
+            "Insert simple adjunct (OPA/NPA)",
+            "Assess difficult laryngoscopy (LEMON)",
+            "Assess difficult ventilation (MOANS)"
+          ]
+        },
+        "reminder": {
+          "items": [
+            "Plan A: Standard Laryngoscopy",
+            "Plan B: Supraglottic Airway",
+            "Plan C: Mask Ventilation",
+            "Plan D: Surgical Airway"
+          ]
+        }
+      },
+      "next": [
+        {
+          "condition": "Anticipated Difficult Airway",
+          "next": 9
+        },
+        {
+          "condition": "Standard Airway",
+          "next": 3
+        }
+      ]
+    },
+    {
+      "step": 3,
+      "action": "Preparation & Induction",
+      "tool": {
+        "checklist": {
+          "items": [
+            "Pre-oxygenate (10-12 breaths/min)",
+            "Prepare Laryngoscope & ETT",
+            "Verify IV access",
+            "Administer Induction Agent",
+            "Administer Neuromuscular Blocker"
+          ]
+        },
+        "timer": [
+          {
+            "label": "Paralysis Onset",
+            "duration": 60,
+            "onComplete": "Check Jaw Relaxation",
+            "persist": false
+          }
+        ]
+      },
+      "next": [
+        {
+          "condition": "Ready to Intubate",
+          "next": 4
+        }
+      ]
+    },
+    {
+      "step": 4,
+      "action": "Intubation Attempt",
+      "tool": {
+        "checklist": {
+          "items": [
+            "Perform Laryngoscopy",
+            "Visualize Cords",
+            "Insert ETT",
+            "Inflate Cuff",
+            "Confirm CO2"
+          ]
+        }
+      },
+      "next": [
+        {
+          "condition": "Success",
+          "next": 8
+        },
+        {
+          "condition": "Fail",
+          "next": 5
+        }
+      ]
+    },
+    {
+      "step": 5,
+      "action": "Failed Intubation",
+      "tool": {
+        "checklist": {
+          "items": [
+            "Call for Help",
+            "Resume Mask Ventilation (2-person)",
+            "Consider different blade/operator/position"
+          ]
+        }
+      },
+      "next": [
+        {
+          "condition": "Good Ventilation",
+          "next": 12
+        },
+        {
+          "condition": "Poor Ventilation",
+          "next": 6
+        }
+      ]
+    },
+    {
+      "step": 6,
+      "action": "Rescue: Supraglottic Airway",
+      "tool": {
+        "checklist": {
+          "items": [
+            "Insert LMA / i-gel",
+            "Assess Ventilation"
+          ]
+        }
+      },
+      "next": [
+        {
+          "condition": "Good Ventilation",
+          "next": 12
+        },
+        {
+          "condition": "Cannot Vent (CICO)",
+          "next": 7
+        }
+      ]
+    },
+    {
+      "step": 7,
+      "action": "Emergency Front of Neck Access",
+      "tool": {
+        "checklist": {
+          "items": [
+            "Declare 'Cannot Intubate, Cannot Ventilate'",
+            "Perform Scalpel Cricothyrotomy",
+            "Insert Bougie & Tube"
+          ]
+        }
+      },
+      "next": [
+        {
+          "condition": "Success",
+          "next": 8
+        },
+        {
+          "condition": "Fail",
+          "next": 11
+        }
+      ]
+    },
+    {
+      "step": 8,
+      "action": "Confirmation (Success)",
+      "tool": {
+        "checklist": {
+          "items": [
+            "Sustained EtCO2 waveform",
+            "Bilateral chest rise/sounds",
+            "Secure Tube",
+            "Post-intubation sedation"
+          ]
+        }
+      },
+      "next": [
+        {
+          "condition": "Finish",
+          "next": "DONE"
+        }
+      ]
+    },
+    {
+      "step": 9,
+      "action": "Awake Intubation Strategy",
+      "tool": {
+        "checklist": {
+          "items": [
+            "Explain procedure to patient",
+            "Topicalize airway (Lidocaine)",
+            "Ensure backup plan (Surgical)",
+            "Use Flexible Bronchoscope"
+          ]
+        }
+      },
+      "next": [
+        {
+          "condition": "Attempt Awake Fiberoptic",
+          "next": 10
+        }
+      ]
+    },
+    {
+      "step": 10,
+      "action": "Awake Attempt Result",
+      "next": [
+        {
+          "condition": "Success",
+          "next": 8
+        },
+        {
+          "condition": "Fail",
+          "next": 12
+        }
+      ]
+    },
+    {
+      "step": 11,
+      "action": "Failure Management",
+      "tool": {
+        "checklist": {
+          "items": [
+             "Maximize Oxygen Application",
+             "Consider ECMO if available",
+             "Re-attempt Surgical Airway"
+          ]
+        }
+      },
+      "next": [
+        {
+          "condition": "End",
+          "next": "DONE"
+        }
+      ]
+    },
+    {
+      "step": 12,
+      "action": "Ventilating - Non-Emergency",
+      "tool": {
+        "checklist": {
+          "items": [
+            "Maintain oxygenation",
+            "Wake patient OR proceed with surgery with LMA?",
+            "Plan for Video Laryngoscopy?"
+          ]
+        }
+      },
+      "next": [
+        {
+          "condition": "Retry Intubation",
+          "next": 4
+        },
+        {
+          "condition": "Wake Patient",
+          "next": "DONE"
+        }
+      ]
     }
+  ]
 }
