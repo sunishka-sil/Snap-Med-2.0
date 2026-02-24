@@ -13,16 +13,16 @@ metaInfo:
     []
   tags:
     []
-  lensName: SharedSyncControls
+  lensName: Sync Test
   lensDescriptors:
-    []
+    - GEN_AI_ICON
   lensApplicability:
     - Front
     - Back
   lensClientCompatibilities:
     - Spectacles
   platformBundlesEnabled: false
-  iconHash: ""
+  iconHash: cd3b27d1b8f005f5e8334ea1eebfe544
   videoPreviewHash: ""
   fromTemplateName: Default
   fromTemplateUrl: Lens Studio 5.2.1.24102400

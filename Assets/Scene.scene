@@ -3,7 +3,6 @@
   objects:
     - !<own> e8b0c4de-580a-4c06-9a58-bec1ff78402f
     - !<own> 961af667-113f-4bd9-a201-d35f57e8bf2d
-    - !<own> 12f5ae5c-cc29-4584-a80e-9f14fa3619d3
     - !<own> 5dcf84b5-32e8-4215-81d8-0f4c70897769
   layers: !<Layers/267ee9a7-aff2-4f9d-9a49-f71214747d03>
     userLayers:
@@ -2639,7 +2638,6 @@
     HasSegmentScaleCompensation: false
   Children:
     - !<own> 7249834d-885c-42c2-8313-ddd6baa4a0da
-    - !<own> 82ea9bf6-dfea-4cfc-8a6b-cc9edd7293e9
   Components:
     []
 - !<SceneObject/2e74cd2e-6ea6-48ca-9b35-be169c447a36>
@@ -2838,6 +2836,7 @@
     - !<own> bec856d6-11b1-49e5-abe0-30c1336bd277
     - !<own> be98b808-939e-43fa-b2dc-7cb6b9f84b48
     - !<own> d3e166df-c95a-48be-ade1-6bc84342700c
+    - !<own> 12f5ae5c-cc29-4584-a80e-9f14fa3619d3
   Components:
     []
 - !<SceneObject/30b0baad-f639-4ed7-a468-205b0879cea0>
@@ -3909,6 +3908,7 @@
     Scale: {x: 1.000000, y: 1.000000, z: 1.000000}
     HasSegmentScaleCompensation: false
   Children:
+    - !<own> 82ea9bf6-dfea-4cfc-8a6b-cc9edd7293e9
     - !<own> 30223229-d86b-4c2f-a1d6-53ed2749d62b
   Components:
     - !<own> 1756baf8-83e0-4bbe-80fc-81514b7bf6e0
@@ -10716,7 +10716,7 @@
   PrefabRemaps:
     []
   Name: "[OPTIONAL] Connected Lens"
-  Enabled: false
+  Enabled: true
   Layers: 1
   LocalTransform: !<TransformEntity>
     Position: {x: 0.000000, y: 0.000000, z: 0.000000}

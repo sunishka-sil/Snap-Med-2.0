@@ -7,9 +7,6 @@ import {cardiacArrestProcedure} from "../Procedures/cardiacArrest"
 import {intubationProcedure} from "../Procedures/intubation"
 //import {appleCuttingProcedure} from "../Procedures/appleCutting"
 
-// Enum for selecting a procedure from the Lens Studio inspector.
-// To add a new procedure: add an entry here, import its .ts file above,
-// and add a case in resolveProcedure() below.
 export enum ProcedureIndex {
   STROKE         = 0,
   CARDIAC_ARREST = 1,
@@ -17,28 +14,19 @@ export enum ProcedureIndex {
   APPLE_CUTTING  = 3,
 }
 
-// The EntryPointMain class initializes the ProcedureNavigator with whichever
-// procedure is selected via the inspector, then synchronizes all navigation
-// state across users in the session via DataSynchronizationController.
 @component
 export class EntryPointMain extends BaseScriptComponent {
 
-  // UI scene object bindings for the procedure navigator
   @input
   readonly procedureNavigatorInput: ProcedureNavigatorInput
 
-  // Set this in the Lens Studio inspector to choose which procedure runs:
-  //   0 = Stroke Assessment
-  //   1 = Cardiac Arrest Management
-  //   2 = Intubation
-  //   3 = Apple Cutting Task
+  // Set in inspector: 0=Stroke, 1=Cardiac Arrest, 2=Intubation, 3=Apple Cutting
   @input
   readonly procedureIndex: number = ProcedureIndex.STROKE
 
   private procedureNavigator: ProcedureNavigator
   private dataSynchronizationController: DataSynchronizationController
 
-  // Lifecycle method called when the component is initialized
   onAwake() {
     print("[EntryPointMain] onAwake called")
 
@@ -57,41 +45,30 @@ export class EntryPointMain extends BaseScriptComponent {
     )
     print("[EntryPointMain] DataSynchronizationController created")
 
-    print("[EntryPointMain] calling procedureNavigator.start()")
-    this.procedureNavigator.start()
-    print("[EntryPointMain] procedureNavigator.start() done")
-
+    // DataSynchronizationController owns calling start() on the navigator
+    // so the UI always initialises at the right step for both solo and multiplayer
     SessionController.getInstance().notifyOnReady(() => {
       print("[EntryPointMain] session ready, starting sync")
       this.dataSynchronizationController.start()
     })
   }
 
-  // Starts navigator and sync controller once the session is ready
-  private onStart() {
-    this.procedureNavigator.start()
-    this.dataSynchronizationController.start()
-  }
-
-  // Maps a ProcedureIndex value to its procedure data.
-  // To add a new procedure: import its .ts file above and add a case here.
   private resolveProcedure(index: number): unknown {
     switch (index) {
       case ProcedureIndex.STROKE:
-        print(`[EntryPointMain] Loading: Stroke Assessment`)
+        print("[EntryPointMain] Loading: Stroke Assessment")
         return strokeProcedure
-      
       case ProcedureIndex.CARDIAC_ARREST:
-        print(`[EntryPointMain] Loading: Cardiac Arrest`)
+        print("[EntryPointMain] Loading: Cardiac Arrest Management")
         return cardiacArrestProcedure
-
       case ProcedureIndex.INTUBATION:
-        print(`[EntryPointMain] Loading: Intubation`)
+        print("[EntryPointMain] Loading: Intubation")
         return intubationProcedure
-
-
+      //case ProcedureIndex.APPLE_CUTTING:
+        //print("[EntryPointMain] Loading: Apple Cutting Task")
+        //return appleCuttingProcedure
       default:
-        print(`[EntryPointMain] Unknown procedureIndex: ${index}, defaulting to Stroke Assessment`)
+        print("[EntryPointMain] Unknown index: " + index + ", defaulting to Stroke")
         return strokeProcedure
     }
   }
