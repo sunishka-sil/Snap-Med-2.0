@@ -1,6 +1,5 @@
 import { RectangleButton } from 'SpectaclesUIKit.lspkg/Scripts/Components/Button/RectangleButton';
 
-
 @component
 export class ProcedureNavigatorInput extends BaseScriptComponent {
 
@@ -8,7 +7,7 @@ export class ProcedureNavigatorInput extends BaseScriptComponent {
   @input
   readonly root: SceneObject
 
-  // Displays "Step N: Action Name" at the top (purple bar in screenshot)
+  // Displays "Step N: Action Name" at the top
   @input
   readonly stepTitleText: Text
 
@@ -16,15 +15,15 @@ export class ProcedureNavigatorInput extends BaseScriptComponent {
   @input
   readonly checklistContainer: SceneObject
 
-  // Individual checklist item Text components (one per max items across all steps)
-  // ProcedureNavigator will show/hide and populate these based on current step
+  // Individual checklist item Text components
   @input
   readonly checklistItemTexts: Text[]
 
-  @input 
+  // Tappable buttons for each checklist item — triggers toggleChecklistItem
+  @input
   readonly checklistItemButtons: RectangleButton[]
 
-  // Displays the reminder hint line (💡 line in screenshot)
+  // Displays the reminder hint line
   @input
   readonly reminderText: Text
 
@@ -32,7 +31,7 @@ export class ProcedureNavigatorInput extends BaseScriptComponent {
   @input
   readonly reminderRoot: SceneObject
 
-  // Displays the timer countdown number (e.g. "4")
+  // Displays the timer countdown value (e.g. "4")
   @input
   readonly timerText: Text
 
@@ -44,7 +43,7 @@ export class ProcedureNavigatorInput extends BaseScriptComponent {
   @input
   readonly timerRoot: SceneObject
 
-  // Moves forward through linear steps (shown when next.length === 1)
+  // Moves forward through linear steps
   @input
   readonly nextButton: RectangleButton
 
@@ -63,15 +62,16 @@ export class ProcedureNavigatorInput extends BaseScriptComponent {
   // Shown when the procedure reaches DONE
   @input
   readonly doneButton: RectangleButton
+
   // Root object for done button — hidden during procedure
   @input
   readonly doneButtonRoot: SceneObject
 
-  // Hides/minimizes the UI panel ([–] button top right in screenshot)
+  // Hides/minimizes the UI panel
   @input
   readonly hideButton: RectangleButton
 
-  // The minimized UI shown when panel is hidden (tap to restore)
+  // The minimized UI shown when panel is hidden
   @input
   readonly minimizedRoot: SceneObject
 
@@ -79,8 +79,7 @@ export class ProcedureNavigatorInput extends BaseScriptComponent {
   @input
   readonly restoreButton: RectangleButton
 
-  // Condition buttons for branching steps (max 3 based on your JSONs)
-  // Shown instead of Next when next.length > 1
+  // Condition buttons for branching steps (max 3)
   @input
   readonly conditionButtons: RectangleButton[]
 
@@ -88,9 +87,7 @@ export class ProcedureNavigatorInput extends BaseScriptComponent {
   @input
   readonly conditionButtonRoots: SceneObject[]
 
-  // Text labels on each condition button (e.g. "Shockable", "Non-Shockable", "ROSC")
-  // Populated dynamically from the JSON next[i].condition string
+  // Text labels on each condition button
   @input
   readonly conditionButtonLabels: Text[]
 }
-

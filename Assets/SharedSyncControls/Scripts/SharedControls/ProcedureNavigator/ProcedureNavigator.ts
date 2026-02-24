@@ -109,6 +109,13 @@ export class ProcedureNavigator {
 
   goToStep(stepNumber: number) {
     print("[ProcedureNavigator] goToStep called with: " + stepNumber)
+
+    // Skip if already on this step — prevents double render from sync feedback
+    if (this.currentStep && this.currentStep.step === stepNumber) {
+      print("[ProcedureNavigator] already on step " + stepNumber + ", skipping")
+      return
+    }
+
     const step = this.procedure.steps.find(s => s.step === stepNumber)
     print("[ProcedureNavigator] step found: " + JSON.stringify(step))
     if (!step) {
@@ -178,6 +185,17 @@ export class ProcedureNavigator {
         if (obj) obj.enabled = hasItem
       })
     }
+    // Reset all checklist button colors to white on new step
+    if (this.input.checklistItemButtons) {
+      this.input.checklistItemButtons.forEach((btn, i) => {
+        if (!btn) return
+        const sceneObj = btn.getSceneObject()
+        if (!sceneObj) return
+        const meshVisual = sceneObj.getComponent("Component.RenderMeshVisual")
+        if (!meshVisual) return
+        meshVisual.mainMaterial.mainPass.baseColor = new vec4(1.0, 1.0, 1.0, 1.0)
+      })
+    }
     if (this.input.checklistContainer) {
       this.input.checklistContainer.enabled = items.length > 0
     }
@@ -234,7 +252,23 @@ export class ProcedureNavigator {
       const obj = textComp.getSceneObject()
       if (!obj || !obj.enabled) return
       const base = this.currentStep.tool?.checklist?.items[i] ?? ""
-      textComp.text = this.checkedIndices.has(i) ? "✓ " + base : "○ " + base
+      textComp.text = base
+    })
+
+    // Update button colors based on checked state
+    if (!this.input.checklistItemButtons) return
+    this.input.checklistItemButtons.forEach((btn, i) => {
+      if (!btn) return
+      const isChecked = this.checkedIndices.has(i)
+      // Access the button's background mesh to change color
+      const sceneObj = btn.getSceneObject()
+      if (!sceneObj) return
+      const meshVisual = sceneObj.getComponent("Component.RenderMeshVisual")
+      if (!meshVisual) return
+      // Green when checked, white when unchecked
+      meshVisual.mainMaterial.mainPass.baseColor = isChecked
+        ? new vec4(0.2, 0.8, 0.2, 1.0)
+        : new vec4(1.0, 1.0, 1.0, 1.0)
     })
   }
 

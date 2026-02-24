@@ -127,7 +127,9 @@ export class DataSynchronizationController {
     switch (key) {
       // Another user moved to a new step — navigate locally
       case RealtimeStoreKeys.STEP:
-        this.procedureNavigator.goToStep(this.realtimeStore.getInt(key))
+        const newStep = this.realtimeStore.getInt(key)
+        print(`[DataSynchronizationController] received step update: ${newStep}`)
+        this.procedureNavigator.goToStep(newStep)
         break
 
       // Another user checked/unchecked a checklist item — update local checklist UI
