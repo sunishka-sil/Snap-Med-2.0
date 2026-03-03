@@ -303,6 +303,18 @@ export class ProcedureNavigator {
 
   // ─── Button Handlers ──────────────────────────────────────────────────────
 
+  // Public helpers so other scripts (e.g. voice navigation) can trigger
+  // the same behaviour as pressing the Next / Back buttons.
+  public triggerNext(): void {
+    print("[ProcedureNavigator] triggerNext called from external script")
+    this.onNextPinched()
+  }
+
+  public triggerBack(): void {
+    print("[ProcedureNavigator] triggerBack called from external script")
+    this.onBackPinched()
+  }
+
   private onNextPinched = (): void => {
     print("[ProcedureNavigator] Next pressed")
     const nextCondition = this.currentStep.next[0]

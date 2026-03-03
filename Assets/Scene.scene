@@ -6735,6 +6735,21 @@
     - !<own> 67d6232f-a036-42ab-9b2e-20f2134097e1
   Components:
     []
+- !<SceneObject/815ef4a1-4cad-49d0-a0ba-e1a25b28760d>
+  PrefabRemaps:
+    []
+  Name: VoiceNavigation
+  Enabled: true
+  Layers: 1
+  LocalTransform: !<TransformEntity>
+    Position: {x: 0.000000, y: 0.000000, z: 100.000000}
+    Rotation: {x: 0.000000, y: 0.000000, z: 0.000000}
+    Scale: {x: 1.000000, y: 1.000000, z: 1.000000}
+    HasSegmentScaleCompensation: false
+  Children:
+    []
+  Components:
+    - !<own> afeedb36-905b-4f52-bfe4-100b21989d56
 - !<Text/82502bd0-a747-4cb9-aa13-d30a0164c9e0>
   PrefabRemaps:
     []
@@ -6837,6 +6852,7 @@
     - !<own> d4d7b3d1-2907-4b65-9444-c346081d6b3f
     - !<own> 44789a8d-1bb4-4319-b7e5-9e0076ab527c
     - !<own> e6cd3b98-fd75-435e-abff-3aa87990c72d
+    - !<own> 815ef4a1-4cad-49d0-a0ba-e1a25b28760d
   Components:
     []
 - !<ScriptComponent/83345645-6fa7-431e-8d04-12fd585a1ffa>
@@ -9167,6 +9183,22 @@
     - !<own> 95b967d2-af21-4ed7-a929-c3664be92542
   Components:
     []
+- !<ScriptComponent/afeedb36-905b-4f52-bfe4-100b21989d56>
+  PrefabRemaps:
+    []
+  Name: VoiceNavigation
+  Enabled: true
+  ScriptAsset: !<reference> ca596e87-38f5-4b77-95c8-24760dcab937
+  ScriptInputsDefault:
+    {}
+  ScriptTypesDefault:
+    {}
+  ScriptInputs:
+    "":
+      {}
+  ScriptTypes:
+    "":
+      {}
 - !<SceneObject/b05f3408-2b1f-40ed-b521-90eb927a5833>
   PrefabRemaps:
     []
