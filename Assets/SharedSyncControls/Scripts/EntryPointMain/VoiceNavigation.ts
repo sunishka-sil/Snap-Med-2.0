@@ -71,7 +71,7 @@ export class VoiceNavigation extends BaseScriptComponent {
 
   private onTranscriptionUpdate(eventArgs: AsrModule.TranscriptionUpdateEvent): void {
     const rawText = eventArgs.text ? eventArgs.text : ""
-    print("[VoiceNavigation] onTranscriptionUpdate raw='" + rawText + "', isFinal=" + eventArgs.isFinal)
+    // print("[VoiceNavigation] onTranscriptionUpdate raw='" + rawText + "', isFinal=" + eventArgs.isFinal)
 
     // Only act on FINAL transcripts to avoid multiple triggers
     // from the same utterance while ASR is refining its guess.
@@ -98,7 +98,7 @@ export class VoiceNavigation extends BaseScriptComponent {
     }
     this.lastFinalTranscript = text
 
-    print("[VoiceNavigation] Final transcription: " + text)
+    // print("[VoiceNavigation] Final transcription: " + text)
 
     // Only respond to the standalone words "next" or "back"
     const hasNext = /\bnext\b/.test(text)
