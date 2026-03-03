@@ -13,7 +13,7 @@ metaInfo:
     []
   tags:
     []
-  lensName: Sync Test
+  lensName: snap-med-voice
   lensDescriptors:
     - GEN_AI_ICON
   lensApplicability:
