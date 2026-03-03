@@ -13,6 +13,7 @@ export class VoiceNavigation extends BaseScriptComponent {
   private entryPoint: EntryPointMain | null = null
 
   private asrModule = asrRuntimeModule
+  private lastFinalTranscript: string = ""
 
   onAwake(): void {
     print("[VoiceNavigation] onAwake called")
@@ -69,11 +70,14 @@ export class VoiceNavigation extends BaseScriptComponent {
   }
 
   private onTranscriptionUpdate(eventArgs: AsrModule.TranscriptionUpdateEvent): void {
-    // Log every callback so you know if speech is being detected at all.
-    // We intentionally ignore eventArgs.isFinal and trigger on ANY update
-    // that contains our keywords.
     const rawText = eventArgs.text ? eventArgs.text : ""
     print("[VoiceNavigation] onTranscriptionUpdate raw='" + rawText + "', isFinal=" + eventArgs.isFinal)
+
+    // Only act on FINAL transcripts to avoid multiple triggers
+    // from the same utterance while ASR is refining its guess.
+    if (!eventArgs.isFinal) {
+      return
+    }
 
     if (!this.entryPoint) {
       print("[VoiceNavigation] Received transcription but entryPoint is missing")
@@ -86,12 +90,24 @@ export class VoiceNavigation extends BaseScriptComponent {
       return
     }
 
+    // De-duplicate: if ASR sends the same final text twice in a row,
+    // only handle it once.
+    if (text === this.lastFinalTranscript) {
+      print("[VoiceNavigation] Final transcript unchanged, ignoring duplicate")
+      return
+    }
+    this.lastFinalTranscript = text
+
     print("[VoiceNavigation] Final transcription: " + text)
 
-    if (text.indexOf("next") !== -1) {
+    // Only respond to the standalone words "next" or "back"
+    const hasNext = /\bnext\b/.test(text)
+    const hasBack = /\bback\b/.test(text)
+
+    if (hasNext && !hasBack) {
       print("[VoiceNavigation] Detected keyword 'next'")
       this.entryPoint.goToNextStepFromVoice()
-    } else if (text.indexOf("back") !== -1) {
+    } else if (hasBack && !hasNext) {
       print("[VoiceNavigation] Detected keyword 'back'")
       this.entryPoint.goToPreviousStepFromVoice()
     }
