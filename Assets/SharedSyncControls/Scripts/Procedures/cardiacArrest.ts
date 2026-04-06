@@ -1,4 +1,4 @@
-export const cardiacArrestProcedure = { 
+export const cardiacArrestProcedure = {
   "procedure": "Cardiac Arrest Management",
   "steps": [
     {
@@ -8,7 +8,13 @@ export const cardiacArrestProcedure = {
         "checklist": {
           "items": [
             "Check for responsiveness",
-            "Call for nearby help & AED"
+            "Bring AED to the bedside",
+            "Position backboard behind patient"
+          ]
+        },
+        "reminder": {
+          "items": [
+            "Ensure mannequin is on a firm surface before starting compressions."
           ]
         }
       },
@@ -21,14 +27,22 @@ export const cardiacArrestProcedure = {
     },
     {
       "step": 2,
-      "action": "Pulse Check",
+      "action": "Pulse & Breathing Check",
       "tool": {
         "checklist": {
           "items": [
-            "Assess patient for pulse (< 10 seconds)",
-            "Look for normal breathing"
+            "Assess pulse (no more than 10 seconds)",
+            "Assess for normal breathing"
           ]
         },
+        "timer": [
+          {
+            "label": "Pulse Check (Max 10 Seconds)",
+            "duration": 10,
+            "onComplete": "Begin CPR if no pulse",
+            "persist": false
+          }
+        ],
         "reminder": {
           "items": [
             "Agonal gasps are NOT normal breathing."
@@ -37,7 +51,7 @@ export const cardiacArrestProcedure = {
       },
       "next": [
         {
-          "condition": "No Pulse / Abn. Breathing",
+          "condition": "No Pulse / Abnormal Breathing",
           "next": 3
         },
         {
@@ -52,9 +66,15 @@ export const cardiacArrestProcedure = {
       "tool": {
         "checklist": {
           "items": [
-            "Start Compressions (30:2 ratio)",
-            "Push hard (2-2.4 in) and fast (100-120/min)",
-            "Allow chest recoil"
+            "Start compressions (30:2 ratio)",
+            "Compress at 100-120 per minute",
+            "Compress depth 2-2.4 inches (5-6 cm)",
+            "Allow the chest to fully rise before the next compression"
+          ]
+        },
+        "reminder": {
+          "items": [
+            "Minimize interruptions in compressions."
           ]
         }
       },
@@ -73,7 +93,12 @@ export const cardiacArrestProcedure = {
           "items": [
             "Turn on AED",
             "Apply pads (continue compressions if possible)",
-            "Plug in connector"
+            "Connect pads to AED"
+          ]
+        },
+        "reminder": {
+          "items": [
+            "Do not delay compressions while preparing AED."
           ]
         }
       },
@@ -91,7 +116,7 @@ export const cardiacArrestProcedure = {
         "checklist": {
           "items": [
             "Stop compressions",
-            "Clear patient",
+            "Ensure everyone is clear of patient",
             "Analyze rhythm"
           ]
         }
@@ -102,7 +127,7 @@ export const cardiacArrestProcedure = {
           "next": 6
         },
         {
-          "condition": "Non-Shockable (As/PEA)",
+          "condition": "Non-Shockable (Asystole/PEA)",
           "next": 7
         }
       ]
@@ -114,8 +139,8 @@ export const cardiacArrestProcedure = {
         "checklist": {
           "items": [
             "Clear patient",
-            "Press Shock button",
-            "Resume CPR immediately (Do not check pulse)"
+            "Deliver shock",
+            "Immediately resume compressions (do not check pulse)"
           ]
         }
       },
@@ -128,24 +153,30 @@ export const cardiacArrestProcedure = {
     },
     {
       "step": 7,
-      "action": "CPR (2 Minutes)",
+      "action": "CPR Cycle (2 Minutes)",
       "tool": {
         "checklist": {
           "items": [
-            "High-quality compressions",
-            "Consider advanced airway",
-            "Establish IV/IO access",
-            "Consider Epinephrine q3-5min"
+            "Perform high-quality compressions",
+            "Switch compressor if available",
+            "Confirm IV access",
+            "Administer Epinephrine every 3-5 minutes"
           ]
         },
         "timer": [
           {
-            "label": "CPR Cycle",
+            "label": "2-Minute CPR Cycle",
             "duration": 120,
-            "onComplete": "Stop for Rhythm Check",
+            "onComplete": "Stop for rhythm check",
             "persist": true
           }
-        ]
+        ],
+        "reminder": {
+          "items": [
+            "IV access is available, Check the arm.",
+            "Avoid pauses longer than 10 seconds."
+          ]
+        }
       },
       "next": [
         {
@@ -156,13 +187,14 @@ export const cardiacArrestProcedure = {
     },
     {
       "step": 8,
-      "action": "Rhythm Check",
+      "action": "Rhythm & Pulse Check",
       "tool": {
         "checklist": {
           "items": [
             "Stop compressions",
             "Check rhythm",
-            "Switch Compressor"
+            "Check pulse if organized rhythm",
+            "Switch compressor"
           ]
         }
       },
@@ -176,7 +208,7 @@ export const cardiacArrestProcedure = {
           "next": 10
         },
         {
-          "condition": "ROSC",
+          "condition": "ROSC (Resumed Cardiac Activity)",
           "next": 11
         }
       ]
@@ -188,8 +220,8 @@ export const cardiacArrestProcedure = {
         "checklist": {
           "items": [
             "Clear patient",
-            "Deliver Shock",
-            "Resume CPR immediately"
+            "Deliver shock",
+            "Resume compressions immediately"
           ]
         }
       },
@@ -202,13 +234,12 @@ export const cardiacArrestProcedure = {
     },
     {
       "step": 10,
-      "action": "Resume CPR / Meds",
+      "action": "Resume CPR / Medications",
       "tool": {
         "checklist": {
           "items": [
-            "Resume Compressions",
-            "Administer Antiarrhythmic if refractory VF/pVT",
-            "Treat Reversible Causes (H's & T's)"
+            "Resume high-quality compressions",
+            "Continue medication timing"
           ]
         }
       },
@@ -221,15 +252,18 @@ export const cardiacArrestProcedure = {
     },
     {
       "step": 11,
-      "action": "Post-Cardiac Arrest Care",
+      "action": "Post-ROSC Care",
       "tool": {
         "checklist": {
           "items": [
-            "Monitor Vitals",
-            "Treat Hypotension (Fluids/Pressors)",
-            "Target SpO2 92-98%",
-            "Consider TTM (Targeted Temp Management)",
-            "12-Lead ECG"
+            "Monitor vital signs",
+            "Maintain SpO2 between 92-98%",
+            "Treat hypotension (fluids/pressors as indicated)"
+          ]
+        },
+        "reminder": {
+          "items": [
+            "Avoid hyperventilation."
           ]
         }
       },

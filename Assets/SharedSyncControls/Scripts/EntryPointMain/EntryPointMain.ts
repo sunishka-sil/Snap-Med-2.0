@@ -5,7 +5,7 @@ import {ProcedureNavigatorInput} from "../SharedControls/ProcedureNavigator/Proc
 import {strokeProcedure} from "../Procedures/stroke"
 import {cardiacArrestProcedure} from "../Procedures/cardiacArrest"
 import {intubationProcedure} from "../Procedures/intubation"
-import {procedureData} from "../Procedures/initiateALL"
+import {appleCutting} from "../Procedures/apple"
 
 export enum ProcedureIndex {
   STROKE         = 0,
@@ -107,8 +107,8 @@ export class EntryPointMain extends BaseScriptComponent {
         print("[EntryPointMain] Loading: Intubation")
         return intubationProcedure
       case ProcedureIndex.APPLE_CUTTING:
-        print("[EntryPointMain] Loading: ALL")
-        return procedureData
+        print("[EntryPointMain] Loading: Apple Cutting")
+        return appleCutting
       default:
         print("[EntryPointMain] Unknown index: " + index + ", defaulting to Stroke")
         return strokeProcedure

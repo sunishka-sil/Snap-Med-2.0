@@ -3,88 +3,80 @@ export const intubationProcedure = {
   "steps": [
     {
       "step": 1,
-      "action": "Initial Safety & Equipment",
+      "action": "Initial Setup",
       "tool": {
         "checklist": {
           "items": [
-            "Don appropriate PPE",
-            "Call for help / Specialized airway team",
-            "Gather difficult airway cart",
-            "Check oxygen source and suction"
+            "Bring airway equipment to bedside",
+            "Check baseline SpO2 on the monitor", 
+            "Confirm baseline Sp02 is around 80% before intervention", 
+            "Verbalise: 'I am preparing to secure the airway'", 
+            "Ensure all necessary equipment is ready before starting."
           ]
         },
         "reminder": {
           "items": [
-            "Ensure all equipment is functioning before starting."
+            
           ]
         }
       },
       "next": [
-        {
-          "condition": "Next",
-          "next": 2
-        }
+        { "condition": "", "next": 2 }
       ]
     },
     {
       "step": 2,
-      "action": "Airway Assessment",
+      "action": "Open and Prepare the Airway",
       "tool": {
         "checklist": {
           "items": [
-            "Open airway manually",
-            "Insert simple adjunct (OPA/NPA)",
-            "Assess difficult laryngoscopy (LEMON)",
-            "Assess difficult ventilation (MOANS)"
+            "Tilt head back and lift chin",
+            "Insert an appropriately sized OPA",
+            "Provide oxygen using mask and bag",
+            "Re-check SpO2 after ventilation (should be ~85%)"
           ]
         },
         "reminder": {
           "items": [
-            "Plan A: Standard Laryngoscopy",
-            "Plan B: Supraglottic Airway",
-            "Plan C: Mask Ventilation",
-            "Plan D: Surgical Airway"
+            "Measure OPA from the corner of the mouth to the angle of the jaw."
           ]
         }
       },
       "next": [
-        {
-          "condition": "Anticipated Difficult Airway",
-          "next": 9
-        },
-        {
-          "condition": "Standard Airway",
-          "next": 3
-        }
+        { "condition": "improved", "next": 3 },
+        { "condition": "low", "next": 12 },
+        { "condition": "awake", "next": 9 }
       ]
     },
     {
       "step": 3,
-      "action": "Preparation & Induction",
+      "action": "Prepare Tube and Give Medication",
       "tool": {
         "checklist": {
           "items": [
-            "Pre-oxygenate (10-12 breaths/min)",
-            "Prepare Laryngoscope & ETT",
-            "Verify IV access",
-            "Administer Induction Agent",
-            "Administer Neuromuscular Blocker"
+            "Confirm IV access (already present on mannequin arm)",
+            "Check that the breathing tube cuff inflates",
+            "Give sleep medication",
+            "Give paralysis medication"
           ]
         },
         "timer": [
           {
-            "label": "Paralysis Onset",
+            "label": "Medication Onset (Wait for Relaxation)",
             "duration": 60,
-            "onComplete": "Check Jaw Relaxation",
+            "onComplete": "Check jaw relaxation before attempting",
             "persist": false
           }
-        ]
+        ],
+        "reminder": {
+          "items": [
+            "Do not attempt intubation until jaw is relaxed.",
+            "Continue monitoring O2 levels."
+          ]
+        }
       },
       "next": [
-        {
-          "condition": "Ready to Intubate",
-          "next": 4
-        }
+        { "condition": "", "next": 4 }
       ]
     },
     {
@@ -93,111 +85,121 @@ export const intubationProcedure = {
       "tool": {
         "checklist": {
           "items": [
-            "Perform Laryngoscopy",
-            "Visualize Cords",
-            "Insert ETT",
-            "Inflate Cuff",
-            "Confirm CO2"
+            "Insert laryngoscope",
+            "Look for vocal cords",
+            "Insert breathing tube through cords",
+            "Inflate cuff",
+            "Attach bag and give breaths"
+          ]
+        },
+        "timer": [
+          {
+            "label": "Attempt Time Limit",
+            "duration": 30,
+            "onComplete": "Stop attempt and re-oxygenate",
+            "persist": false
+          }
+        ],
+        "reminder": {
+          "items": [
+            "Limit each attempt to 30 seconds.",
+            "If oxygen drops, stop and give breaths with mask."
           ]
         }
       },
       "next": [
-        {
-          "condition": "Success",
-          "next": 8
-        },
-        {
-          "condition": "Fail",
-          "next": 5
-        }
+        { "condition": "Success", "next": 8 },
+        { "condition": "Fail", "next": 5 }
       ]
     },
     {
       "step": 5,
-      "action": "Failed Intubation",
+      "action": "If Attempt Fails - Re-oxygenate",
       "tool": {
         "checklist": {
           "items": [
-            "Call for Help",
-            "Resume Mask Ventilation (2-person)",
-            "Consider different blade/operator/position"
+            "Remove tube",
+            "Resume mask ventilation (two hands if possible)",
+            "Adjust head position",
+            "Ensure chest rises with each breath",
+            "Re-check SpO2 while ventilating"
+          ]
+        },
+        "reminder": {
+          "items": [
+            "Oxygenation is more important than repeated attempts."
           ]
         }
       },
       "next": [
-        {
-          "condition": "Good Ventilation",
-          "next": 12
-        },
-        {
-          "condition": "Poor Ventilation",
-          "next": 6
-        }
+        { "condition": "Good Ventilation", "next": 12 },
+        { "condition": "Poor Ventilation", "next": 6 }
       ]
     },
     {
       "step": 6,
-      "action": "Rescue: Supraglottic Airway",
+      "action": "Insert Rescue Airway Device",
       "tool": {
         "checklist": {
           "items": [
-            "Insert LMA / i-gel",
-            "Assess Ventilation"
+            "Insert supraglottic airway device (LMA or i-gel)",
+            "Give breaths",
+            "Look for chest rise",
+            "Re-check SpO2"
           ]
         }
       },
       "next": [
-        {
-          "condition": "Good Ventilation",
-          "next": 12
-        },
-        {
-          "condition": "Cannot Vent (CICO)",
-          "next": 7
-        }
+        { "condition": "Good Ventilation", "next": 12 },
+        { "condition": "Cannot Ventilate", "next": 7 }
       ]
     },
     {
       "step": 7,
-      "action": "Emergency Front of Neck Access",
+      "action": "Emergency Surgical Airway",
       "tool": {
         "checklist": {
           "items": [
-            "Declare 'Cannot Intubate, Cannot Ventilate'",
-            "Perform Scalpel Cricothyrotomy",
-            "Insert Bougie & Tube"
+            "Say out loud: 'Cannot intubate, cannot ventilate'",
+            "Perform emergency surgical airway procedure",
+            "Insert tube",
+            "Give breaths",
+            "Re-check SpO2"
+          ]
+        },
+        "reminder": {
+          "items": [
+            "This is a life-threatening emergency.",
+            "Act quickly and clearly."
           ]
         }
       },
       "next": [
-        {
-          "condition": "Success",
-          "next": 8
-        },
-        {
-          "condition": "Fail",
-          "next": 11
-        }
+        { "condition": "Success", "next": 8 },
+        { "condition": "Fail", "next": 11 }
       ]
     },
     {
       "step": 8,
-      "action": "Confirmation (Success)",
+      "action": "Confirm Tube Placement",
       "tool": {
         "checklist": {
           "items": [
-            "Sustained EtCO2 waveform",
-            "Bilateral chest rise/sounds",
-            "Secure Tube",
-            "Post-intubation sedation"
+            "Check for consistent chest rise",
+            "Secure the tube",
+            "Say out loud: 'Tube Confirmed and Secured'",
+            "Start sedation",
+            "Check SpO2 after successful intubation (should rise to ~99%)"
+          ]
+        },
+        "reminder": {
+          "items": [
+            "Document tube depth if markings are available."
           ]
         }
       },
       "next": [
-        {
-          "condition": "Finish",
-          "next": "DONE"
-        }
+        { "condition": "", "next": "DONE" }
       ]
     },
     {
@@ -207,31 +209,22 @@ export const intubationProcedure = {
         "checklist": {
           "items": [
             "Explain procedure to patient",
-            "Topicalize airway (Lidocaine)",
-            "Ensure backup plan (Surgical)",
-            "Use Flexible Bronchoscope"
+            "Apply numbing medication to airway",
+            "Prepare flexible scope",
+            "Ensure backup plan is ready"
           ]
         }
       },
       "next": [
-        {
-          "condition": "Attempt Awake Fiberoptic",
-          "next": 10
-        }
+        { "condition": "", "next": 10 }
       ]
     },
     {
       "step": 10,
       "action": "Awake Attempt Result",
       "next": [
-        {
-          "condition": "Success",
-          "next": 8
-        },
-        {
-          "condition": "Fail",
-          "next": 12
-        }
+        { "condition": "Success", "next": 8 },
+        { "condition": "Fail", "next": 12 }
       ]
     },
     {
@@ -240,41 +233,39 @@ export const intubationProcedure = {
       "tool": {
         "checklist": {
           "items": [
-             "Maximize Oxygen Application",
-             "Consider ECMO if available",
-             "Re-attempt Surgical Airway"
+            "Maximize oxygen delivery",
+            "Reattempt emergency airway if possible"
           ]
         }
       },
       "next": [
-        {
-          "condition": "End",
-          "next": "DONE"
-        }
+        { "condition": "", "next": "DONE" }
       ]
     },
     {
       "step": 12,
-      "action": "Ventilating - Non-Emergency",
+      "action": "Ventilating - Decide Next Action",
       "tool": {
         "checklist": {
           "items": [
-            "Maintain oxygenation",
-            "Wake patient OR proceed with surgery with LMA?",
-            "Plan for Video Laryngoscopy?"
+            "Continue giving oxygen",
+            "Confirm chest rise with ventilation",
+            "Confirm SpO2 is improving or stable",
+            "Reassess next airway plan",
+            "Do not retry until oxygenation is stable.",
+          ]
+        },
+        "reminder": {
+          "items": [
+            "If SpO2 remains low, continue ventilation before attempting again."
           ]
         }
       },
       "next": [
-        {
-          "condition": "Retry Intubation",
-          "next": 4
-        },
-        {
-          "condition": "Wake Patient",
-          "next": "DONE"
-        }
+        { "condition": "Retry Intubation", "next": 4 },
+        { "condition": "Stop", "next": "DONE" }
       ]
     }
   ]
 }
+

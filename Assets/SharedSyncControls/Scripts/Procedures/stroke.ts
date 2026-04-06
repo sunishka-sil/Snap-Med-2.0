@@ -1,14 +1,14 @@
-export const strokeProcedure = { 
-"procedure": "Stroke Assessment",
+export const strokeProcedure = {
+  "procedure": "Stroke Assessment (FAST)",
   "steps": [
     {
       "step": 1,
       "action": "Introduction",
-      "tool": {
+      "tool": { 
         "checklist": {
           "items": [
             "Introduce yourself and your role",
-            "Explain assessment to patient", 
+            "Explain assessment to patient",
             "(e.g., 'I will be checking for signs of stroke')"
           ]
         },
@@ -27,17 +27,17 @@ export const strokeProcedure = {
     },
     {
       "step": 2,
-      "action": "Assess Facial Drooping (F)",
+      "action": "Facial Droop (F)",
       "tool": {
         "checklist": {
           "items": [
             "Ask patient to smile or show teeth",
-            "Observe for facial asymmetry or drooping on one side"
+            "Observe for facial asymmetry or unilateral drooping"
           ]
         },
         "reminder": {
           "items": [
-            "Look for uneven smile or eyelids."
+            "Look for uneven smile, eyelid droop, or flattening on one side."
           ]
         }
       },
@@ -50,7 +50,7 @@ export const strokeProcedure = {
     },
     {
       "step": 3,
-      "action": "Assess Arm Weakness (A)",
+      "action": "Arm Drift (A)",
       "tool": {
         "checklist": {
           "items": [
@@ -63,13 +63,13 @@ export const strokeProcedure = {
           {
             "label": "Arm Drift Assessment",
             "duration": 10,
-            "onComplete": "Check for drift",
+            "onComplete": "Assess for drift",
             "persist": false
           }
         ],
         "reminder": {
           "items": [
-            "Watch for one arm drifting down or rotating."
+            "Watch for one arm drifting downward or pronating."
           ]
         }
       },
@@ -82,12 +82,17 @@ export const strokeProcedure = {
     },
     {
       "step": 4,
-      "action": "Assess Speech Difficulty (S)",
+      "action": "Speech (S)",
       "tool": {
         "checklist": {
           "items": [
             "Ask patient to repeat a simple phrase (e.g., 'The sky is blue')",
-            "Listen for slurred speech or inability to speak"
+            "Assess for slurred speech, aphasia, or inability to speak"
+          ]
+        },
+        "reminder": {
+          "items": [
+            "If unclear, ask patient to name a simple object or follow a one-step command."
           ]
         }
       },
@@ -100,17 +105,17 @@ export const strokeProcedure = {
     },
     {
       "step": 5,
-      "action": "Timeline Assessment (T)",
+      "action": "Time Last Known Well (T)",
       "tool": {
         "checklist": {
           "items": [
             "Ask: 'What time did the symptoms start?'",
-            "Ask: 'When was the last time you were known to be well?'"
+            "Ask: 'When was the patient last known to be normal?'"
           ]
         },
         "reminder": {
           "items": [
-            "Record exact times if possible."
+            "Record exact clock time whenever possible."
           ]
         }
       },
@@ -123,13 +128,17 @@ export const strokeProcedure = {
     },
     {
       "step": 6,
-      "action": "Additional Findings",
+      "action": "Blood Glucose Check",
       "tool": {
         "checklist": {
           "items": [
-            "Check blood glucose or verbalize need to check",
-            "Determine if BE-FAST findings are positive",
-            "Verbalize findings aloud to team/recording"
+            "Check blood glucose OR verbalize need to check immediately",
+            "Interpret result"
+          ]
+        },
+        "reminder": {
+          "items": [
+            "Hypoglycemia can mimic stroke."
           ]
         }
       },
@@ -142,11 +151,14 @@ export const strokeProcedure = {
     },
     {
       "step": 7,
-      "action": "Medication History",
+      "action": "Medication & Team Summary",
       "tool": {
         "checklist": {
           "items": [
-            "Ask if patient is on anticoagulant medications (blood thinners)"
+            "Ask about anticoagulant (blood thinner) use",
+            "Verbalize FAST findings",
+            "Verbalize last known well time",
+            "Communicate glucose result to team/recording"
           ]
         }
       },
@@ -159,6 +171,6 @@ export const strokeProcedure = {
     }
   ],
   "filename": "stroke.json",
-  "timestamp": "2026-02-13T10:00:00.000Z",
+  "timestamp": "2026-03-01T00:00:00.000Z",
   "is_active": true
 }
