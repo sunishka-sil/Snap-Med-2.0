@@ -179,31 +179,55 @@ export const intubationProcedure = {
         { "condition": "Fail", "next": 11 }
       ]
     },
-    {
+     {
       "step": 8,
-      "action": "Confirm Tube Placement",
+      "action": "Confirm Tube Placement (Initial Checks)",
       "tool": {
         "checklist": {
           "items": [
             "Check for consistent chest rise",
-            "Secure the tube",
-            "Say out loud: 'Tube Confirmed and Secured'",
-            "Start sedation",
-            "Check SpO2 after successful intubation (should rise to ~99%)"
+            "Attach bag and ventilate",
+            "Check SpO2 after intubation"
           ]
         },
         "reminder": {
           "items": [
-            "Document tube depth if markings are available."
+            "SpO2 should begin improving.",
+            "Do not assume placement is correct yet."
           ]
         }
       },
       "next": [
-        { "condition": "", "next": "DONE" }
+        { "condition": "", "next": 9 }
       ]
     },
     {
       "step": 9,
+      "action": "Auscultation with Stethoscope",
+      "tool": {
+        "checklist": {
+          "items": [
+            "Listen over left lung, and right lung - Confirm bilateral breath",
+            "Listen over stomach (epigastrium) - Confirm no gastric sounds",
+            "(Unequal breath sounds may indicate mainstem intubation.)", 
+            "(Gastric Sounds suggest esophageal intubation.)", 
+            "Say: 'Breath Sounds Confirmed Bilaterally, no gastric sounds.'"
+          ]
+        },
+        "reminder": {
+          "items": [
+            "",
+            "Gastric sounds suggest esophageal intubation.",
+            "Say: 'Breath sounds confirmed bilaterally, no gastric sounds.'"
+          ]
+        }
+      },
+      "next": [
+        { "condition": "", "next": 10 }
+      ]
+    },
+    {
+      "step": 10,
       "action": "Awake Intubation Strategy",
       "tool": {
         "checklist": {
@@ -216,19 +240,19 @@ export const intubationProcedure = {
         }
       },
       "next": [
-        { "condition": "", "next": 10 }
-      ]
-    },
-    {
-      "step": 10,
-      "action": "Awake Attempt Result",
-      "next": [
-        { "condition": "Success", "next": 8 },
-        { "condition": "Fail", "next": 12 }
+        { "condition": "", "next": 11 }
       ]
     },
     {
       "step": 11,
+      "action": "Awake Attempt Result",
+      "next": [
+        { "condition": "Success", "next": 8 },
+        { "condition": "Fail", "next": 13 }
+      ]
+    },
+    {
+      "step": 12,
       "action": "Failure Management",
       "tool": {
         "checklist": {
@@ -243,7 +267,7 @@ export const intubationProcedure = {
       ]
     },
     {
-      "step": 12,
+      "step": 13,
       "action": "Ventilating - Decide Next Action",
       "tool": {
         "checklist": {
@@ -251,12 +275,12 @@ export const intubationProcedure = {
             "Continue giving oxygen",
             "Confirm chest rise with ventilation",
             "Confirm SpO2 is improving or stable",
-            "Reassess next airway plan",
-            "Do not retry until oxygenation is stable.",
+            "Reassess next airway plan"
           ]
         },
         "reminder": {
           "items": [
+            "Do not retry until oxygenation is stable.",
             "If SpO2 remains low, continue ventilation before attempting again."
           ]
         }

@@ -2163,9 +2163,9 @@
   FontSize: 45
   Font: !<reference> 00000000-0000-0000-0000-000000000000
   LayoutRect:
-    left: -7.500000
-    bottom: -2.380000
-    right: 7.320000
+    left: -15.000000
+    bottom: -2.250000
+    right: 15.000000
     top: 2.250000
   OverflowVertical: Truncate
   OverflowHorizontal: Wrap
@@ -8009,7 +8009,7 @@
   LocalTransform: !<TransformEntity>
     Position: {x: 0.000000, y: 0.000000, z: 0.000000}
     Rotation: {x: 0.000000, y: 0.000000, z: 0.000000}
-    Scale: {x: 1.000000, y: 1.000000, z: 1.000000}
+    Scale: {x: 1.000000, y: 1.000000, z: 0.000000}
     HasSegmentScaleCompensation: false
   Children:
     - !<own> 0de6f71d-2be9-4db7-8a08-fa8b3f376cf0
@@ -10234,7 +10234,7 @@
   ScriptInputs:
     "":
       procedureNavigatorInput: !<MappingBased.AssignableType> 320ea403-feff-46ca-b78d-726d3ee7c128
-      procedureIndex: !<float> 4.000000
+      procedureIndex: !<float> 2.000000
   ScriptTypes:
     "":
       {}
@@ -11606,7 +11606,7 @@
   ShadowColor: {x: 1.000000, y: 1.000000, z: 1.000000, w: 1.000000}
   ShadowDensity: 1.000000
   Text: |-
-    Stroke Assessment
+    Intubation
     Procedure
   Editable: false
   ShowEditingPreview: true

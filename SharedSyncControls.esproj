@@ -13,7 +13,7 @@ metaInfo:
     []
   tags:
     []
-  lensName: snap-med-Stroke
+  lensName: snap-med-Intubate
   lensDescriptors:
     - GEN_AI_ICON
   lensApplicability:
@@ -22,7 +22,7 @@ metaInfo:
   lensClientCompatibilities:
     - Spectacles
   platformBundlesEnabled: false
-  iconHash: 0e1190f498cd12c50077c2687e6689da
+  iconHash: 7a6f64c32ee7876a546f88b1eae66730
   videoPreviewHash: ""
   fromTemplateName: Default
   fromTemplateUrl: Lens Studio 5.2.1.24102400
