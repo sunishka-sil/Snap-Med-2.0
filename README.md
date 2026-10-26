@@ -3,7 +3,7 @@
 **Augmented-reality procedure guidance for medical emergencies, built for Snap Spectacles.**
 
 <!-- DEMO VIDEO: replace the line below with the link GitHub gives you after drag-and-dropping SNAP-med.webm here -->
-https://github.com/user-attachments/assets/SNAP-med.webm
+https://github.com/sunishka-sil/Snap-Med-2.0/blob/c8a7201e03d61602d5837c483e3dc0577c8fbfdc/Assets/SNAP-med.webm
 
 SNAP-Med overlays a step-by-step clinical procedure panel in the wearer's field of view. It is designed so that a team of responders, each wearing Spectacles, can follow the same protocol together in real time. When one person advances a step, ticks off a checklist item or picks a branch, every other headset in the session updates to match. Wearers can move through the procedure hands-free with the voice commands **"next"** and **"back"**.
 
