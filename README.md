@@ -8,7 +8,7 @@
 
 SNAP-Med overlays a step-by-step clinical procedure panel in the wearer's field of view. It is designed so that a team of responders, each wearing Spectacles, can follow the same protocol together in real time. When one person advances a step, ticks off a checklist item or picks a branch, every other headset in the session updates to match. Wearers can move through the procedure hands-free with the voice commands **"next"** and **"back"**.
 
-The project is part of PhD-led research at AIRLab exploring AR use cases in emergency medicine.
+The project is part of PhD-led research by Jonathan Segal, at AIRLab - Cornell Tech, exploring AR use cases in emergency medicine.
 
 ---
 
